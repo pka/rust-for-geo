@@ -11,6 +11,9 @@ Description: FOSS4G has always been a conference, where geospatial develeopers m
 More:
 - for iteration
 - Borrow checker
+What's missing:
+- Garbage collection
+- Data inheritance
 :::
 
 # About me
@@ -40,18 +43,28 @@ More:
 
 ## Sourcepole
 
-* Geospatial software
-  (C++, Python, React, Ruby on Rails, ...)
-* Creating maps with Rust!
+* Geospatial software:
+  QGIS, QGIS Web Client and more
+* Developping in Python, C++, Javascript, Ruby
+  and also Rust:
+  * t-rex vector tile server
 
 
 # Rust
 
-## Goals
+## Features
 
+::: incremental
 * Performance
+  - no runtime or garbage collector
+  - low-level control
 * Reliability
+  - Rich type system
+  - Ownership model guarantees memory-safety and thread-safety
 * Productivity
+  - Great documentation and tooling
+  - Friendly compiler
+:::
 
 ::: notes
 
@@ -300,7 +313,7 @@ let filtered = shapes
     .filter(|r| r.area() > 100);
 ```
 
-## Multi-threading
+<!-- ## Multi-threading
 
 ```Rust
 thread::spawn(|| {
@@ -310,7 +323,7 @@ thread::spawn(|| {
     }
 });
 ```
-
+ -->
 ## More
 
 * Modules
@@ -318,6 +331,7 @@ thread::spawn(|| {
 * `async`/`await`
 * Error handling with `Result` type
 * `unsafe`
+* Efficient C bindings
 * Macros
 
 ## Derive-Macros
@@ -332,7 +346,13 @@ struct Rectangle {
 
 ## Standard library
 
-* Collections Vec, HashMap, ...
+* Primitive types
+* String, Arc, Mutex, ...
+* Container and collections
+  - (Vec, HashMap, Iterator, ...)
+* I/O: Files, UDP/TCP
+* Mutlithreading
+* Macros: println, assert, ...
 
 # Tooling
 
@@ -342,17 +362,32 @@ struct Rectangle {
 * Benchmark tests
 * Built-in Documentation generator
 
-https://docs.rs/
+<https://docs.rs/>
 
-## cargo
+## Cargo package manager
 
-* ...
+* Manage dependencies
+* Format code
+* Compile code
+* Run application
+* Run tests
+* Create documentation
+* Create packages for publishing
+* Extensible
 
-https://crates.io
+<https://crates.io>
 
 
 # Geospatial Rust
 
 ## Awesome Geo Rust
 
-https://github.com/pka/awesome-georust
+<https://github.com/pka/awesome-georust>
+
+
+# Learning Rust
+
+## Where to start
+
+* <https://www.rust-lang.org/learn>
+* Books, e.g. "Programming Rust" (O’Reilly)

@@ -6,3 +6,7 @@ HTML is generated with [pandoc](https://pandoc.org/MANUAL.html#slide-shows) in [
 Create HTML:
 
         make
+
+View HTML:
+
+        x-www-browser rust-for-geo.html
