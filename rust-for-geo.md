@@ -13,6 +13,7 @@ More:
 - Borrow checker
 What's missing:
 - Garbage collection
+- throw/catch, try/except
 - Data inheritance
 :::
 
@@ -122,19 +123,18 @@ println!("The value of x is: {}", x);
 
 ## Data types
 
-::: incremental
 * u8, u16, u32, u64
 * i8, i16, i32, i64
 * f32, f64
 * usize, isize
-:::
 
+<!--
 ## Primitive Types:
 
 - Tuples: (i32, u64)
 - Unit type: ()
 - Booleans: bool
-
+ -->
 
 ## Functions
 
@@ -308,12 +308,18 @@ impl Shape for Rectangle {
 ## Closures
 
 ```Rust
+for i in (1..10).filter(|&x| x % 2 == 0) {
+    println!("{}", i);
+}
+```
+<!--
+```Rust
 let filtered = shapes
     .iter()
     .filter(|r| r.area() > 100);
 ```
 
-<!-- ## Multi-threading
+## Multi-threading
 
 ```Rust
 thread::spawn(|| {
@@ -351,7 +357,7 @@ struct Rectangle {
 * Container and collections
   - (Vec, HashMap, Iterator, ...)
 * I/O: Files, UDP/TCP
-* Mutlithreading
+* Multithreading
 * Macros: println, assert, ...
 
 # Tooling
@@ -360,7 +366,7 @@ struct Rectangle {
 
 * Built-in Testing
 * Benchmark tests
-* Built-in Documentation generator
+* Built-in documentation generator
 
 <https://docs.rs/>
 
@@ -380,9 +386,59 @@ struct Rectangle {
 
 # Geospatial Rust
 
+## Geospatial primitives and algorithms
+
+* [Geo](https://github.com/georust/geo) - Geospatial primitives such as Point & LineString, and algorithms such as distance, convex hull, centroidcalculations.
+* [Robust](https://github.com/georust/robust) - Robust primitives for computational geometry.
+* [spade](https://github.com/Stoeoef/spade) - Spatial datastructures like r-trees and delaunay triangulations for Rust.
+* [geographiclib-rs](https://github.com/georust/geographiclib-rs) - A port of geographiclib in Rust.
+
+## Geospatial primitives and algorithms (bindings)
+
+* [GEOS](https://github.com/georust/geos) - Bindings for the Geometry Engine - Open Source (GEOS) library.
+* [PROJ](https://github.com/georust/proj) - Bindings for the PROJ library for coordinate transformation and projections.
+
+## Handling GIS data formats
+
+* [GeoZero](https://github.com/georust/geozero) - Zero-Copy reading and writing of geospatial data.
+* [GeoJSON](https://github.com/georust/geojson) - Work with GeoJSON files.
+* [GeoTIFF](https://github.com/georust/geotiff) - Work with GeoTIFF raster files.
+* [image-tiff](https://github.com/image-rs/image-tiff) - TIFF decoding and encoding library in pure Rust.
+* [FlatGeobuf](https://github.com/flatgeobuf/flatgeobuf) - A performant binary encoding for geographic data based on flatbuffers.
+* [las-rs](https://github.com/gadomski/las-rs) - Read and write ASPRS las files.
+
+## Handling GIS data formats (bindings)
+
+* [GDAL](https://github.com/georust/gdal) - Bindings for the Geographic Data Abstraction Library (GDAL) for reading and writing raster and vector GIS files.
+
+## More crates
+
+* [osmpbfreader-rs](https://github.com/TeXitoi/osmpbfreader-rs) - Read OpenStreetMap PBF files.
+* [rstar](https://github.com/georust/rstar) - R\*-tree library for the rust ecosystem.
+
+More topics:
+
+* Raster and image processing
+* Routing
+* 3D (Meshes, TINs)
+* Geocoding
+* Map rendering
+
+## Applications
+
+* [t-rex](https://t-rex.tileserver.ch/) - Vector tile server specialized on publishing MVT tiles from your own data
+* [Martin](https://github.com/urbica/martin) - Blazing fast and lightweight PostGIS vector tiles server
+* [WhiteboxTools](https://jblindsay.github.io/ghrg/WhiteboxTools/) - Geospatial data analysis platform with more than 445 tools for processing various types of geospatial data. 
+* [A/B Street](https://github.com/dabreegster/abstreet) - A traffic simulation game exploring how small changes to roads affect cyclists, transit users, pedestrians, and drivers.
+
 ## Awesome Geo Rust
 
 <https://github.com/pka/awesome-georust>
+
+## Community
+
+* <https://github.com/georust/>
+* [Discord chat](https://discord.gg/Fp2aape)
 
 
 # Learning Rust
@@ -391,3 +447,8 @@ struct Rectangle {
 
 * <https://www.rust-lang.org/learn>
 * Books, e.g. "Programming Rust" (O’Reilly)
+
+
+## Thank you!
+
+@[implgeo](https://twitter.com/implgeo)
