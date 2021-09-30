@@ -46,7 +46,7 @@ What's missing:
 
 * Geospatial software:
   QGIS, QGIS Web Client and more
-* Developping in Python, C++, Javascript, Ruby
+* Developing in Python, C++, Javascript, Ruby
   and also Rust:
   * t-rex vector tile server
 

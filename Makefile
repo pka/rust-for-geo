@@ -11,7 +11,7 @@ watch: rust-for-geo.md reveal.js/css/reveal.css rust-for-geo.html
 	fswatch -o --event Updated $< | xargs -n1 -I{} sh -c "echo Rebuilding...; pandoc $(SLIDE_OPTIONS) $< -o rust-for-geo.html"
 
 full: rust-for-geo.md reveal.js/css/reveal.css
-	pandoc  $(SLIDE_OPTIONS) --self-contained $< -o rust-for-geo.html
+	pandoc $(SLIDE_OPTIONS) --self-contained $< -o rust-for-geo.html
 
 reveal_version=3.6.0
 
