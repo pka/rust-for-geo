@@ -102,14 +102,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <p class="date">FOSS4G, 1. October 2021</p>
 </section>
 
-<section class="slide level2">
-
-<aside class="notes">
-<p>Abstract: Rust is one of the emerging new programming languages which is well suited for geospatial applications and escpially libraries. It was originally developed by Mozilla as a long-term replacement for C++. It’s a modern language with great tooling and Stack Overflow’s most loved language for four years in a row. This talk gives an introduction into Rust and an overview of the current state of geospatial libraries and applications.</p>
-<p>Description: FOSS4G has always been a conference, where geospatial develeopers meet for discussions. So in a year without the possibility of having a beer, a talk dedicated to developers could be a motivation for attending anyway.</p>
-<p>More: - for iteration - Borrow checker What’s missing: - Garbage collection - throw/catch, try/except - Data inheritance</p>
-</aside>
-</section>
 <section><section id="about-me" class="title-slide slide level1"><h1>About me</h1></section><section id="language-history" class="slide level2">
 <h2>Language history</h2>
 <div>
@@ -145,8 +137,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </section></section>
-<section><section id="rust" class="title-slide slide level1"><h1>Rust</h1></section><section id="features" class="slide level2">
-<h2>Features</h2>
+<section><section id="rust" class="title-slide slide level1"><h1>Rust</h1></section><section id="why-rust" class="slide level2">
+<h2>Why Rust?</h2>
 <div>
 <ul>
 <li class="fragment">Performance
@@ -168,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <aside class="notes">
 <p>Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.</p>
-<p>Rust’s rich type system and ownership model guarantee memory-safety and thread-safety — enabling you to eliminate many classes of bugs at compile-time. Productivity</p>
+<p>Rust’s rich type system and ownership model guarantee memory-safety and thread-safety — enabling you to eliminate many classes of bugs at compile-time.</p>
 <p>Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling — an integrated package manager and build tool, smart multi-editor support with auto-completion and type inspections, an auto-formatter, and more.</p>
 </aside>
 </section><section id="history" class="slide level2">
@@ -213,14 +205,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>i8, i16, i32, i64</li>
 <li>f32, f64</li>
 <li>usize, isize</li>
+<li>bool</li>
+<li>Characters, Tuples, Arrays</li>
 </ul>
-<!--
-## Primitive Types:
-
-- Tuples: (i32, u64)
-- Unit type: ()
-- Booleans: bool
- -->
+<aside class="notes">
+<ul>
+<li>primary scalar types: integers, floating-point numbers, Booleans, and characters</li>
+<li>primitive compound types: tuples and arrays</li>
+</ul>
+</aside>
 </section><section id="functions" class="slide level2">
 <h2>Functions</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">fn</span> area(width: <span class="dt">u32</span>, height: <span class="dt">u32</span>) -&gt; <span class="dt">u32</span> <span class="op">{</span></a>
@@ -250,6 +243,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb7"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">for</span> number <span class="kw">in</span> <span class="dv">1</span>..<span class="dv">4</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb7-2" title="2">    <span class="pp">println!</span>(<span class="st">&quot;{}!&quot;</span>, number);</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="op">}</span></a></code></pre></div>
+<aside class="notes">
+<p>example uses value range, could also be an iterator,…</p>
+</aside>
 </section><section id="structs" class="slide level2">
 <h2>Structs</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">struct</span> Rectangle <span class="op">{</span></a>
@@ -288,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Enums with data</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">enum</span> Color <span class="op">{</span></a>
 <a class="sourceLine" id="cb14-2" title="2">    Rgb(<span class="dt">u8</span>, <span class="dt">u8</span>, <span class="dt">u8</span>),</a>
-<a class="sourceLine" id="cb14-3" title="3">    <span class="cn">None</span>,</a>
+<a class="sourceLine" id="cb14-3" title="3">    Transparent,</a>
 <a class="sourceLine" id="cb14-4" title="4"><span class="op">}</span></a></code></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb15"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">let</span> color = <span class="pp">Color::</span>Rgb(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>);</a></code></pre></div>
@@ -297,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><code>match</code> control flow operator</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">match</span> color <span class="op">{</span></a>
 <a class="sourceLine" id="cb16-2" title="2">    <span class="pp">Color::</span>Rgb(r, g, b) =&gt; <span class="pp">println!</span>(<span class="st">&quot;{}/{}/{}&quot;</span>, r, g, b),</a>
-<a class="sourceLine" id="cb16-3" title="3">    <span class="pp">Color::</span><span class="cn">None</span> =&gt; <span class="pp">println!</span>(<span class="st">&quot;No Color&quot;</span>),</a>
+<a class="sourceLine" id="cb16-3" title="3">    <span class="pp">Color::</span>Transparent =&gt; <span class="pp">println!</span>(<span class="st">&quot;No Color&quot;</span>),</a>
 <a class="sourceLine" id="cb16-4" title="4"><span class="op">}</span></a></code></pre></div>
 </section><section id="if-let" class="slide level2">
 <h2><code>if let</code></h2>
@@ -342,24 +338,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb24"><pre class="sourceCode rust"><code class="sourceCode rust"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">for</span> i <span class="kw">in</span> (<span class="dv">1</span>..<span class="dv">10</span>).filter(|&amp;x| x % <span class="dv">2</span> == <span class="dv">0</span>) <span class="op">{</span></a>
 <a class="sourceLine" id="cb24-2" title="2">    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span>, i);</a>
 <a class="sourceLine" id="cb24-3" title="3"><span class="op">}</span></a></code></pre></div>
-<!--
-```Rust
-let filtered = shapes
-    .iter()
-    .filter(|r| r.area() > 100);
-```
-
-## Multi-threading
-
-```Rust
-thread::spawn(|| {
-    for i in 1..10 {
-        println!("hi number {} from the spawned thread!", i);
-        thread::sleep(Duration::from_millis(1));
-    }
-});
-```
- -->
+<aside class="notes">
+<p>Functional Language Features: Iterators and Closures Closures: Anonymous Functions that Can Capture Their Environment</p>
+</aside>
 </section><section id="more" class="slide level2">
 <h2>More</h2>
 <ul>
@@ -418,9 +399,8 @@ thread::spawn(|| {
 <h2>Geospatial primitives and algorithms</h2>
 <ul>
 <li><a href="https://github.com/georust/geo">Geo</a> - Geospatial primitives such as Point &amp; LineString, and algorithms such as distance, convex hull, centroidcalculations.</li>
-<li><a href="https://github.com/georust/robust">Robust</a> - Robust primitives for computational geometry.</li>
 <li><a href="https://github.com/Stoeoef/spade">spade</a> - Spatial datastructures like r-trees and delaunay triangulations for Rust.</li>
-<li><a href="https://github.com/georust/geographiclib-rs">geographiclib-rs</a> - A port of geographiclib in Rust.</li>
+<li><a href="https://github.com/georust/geographiclib-rs">geographiclib-rs</a> - A port of geographiclib (geodesic calculations).</li>
 </ul>
 </section><section id="geospatial-primitives-and-algorithms-bindings" class="slide level2">
 <h2>Geospatial primitives and algorithms (bindings)</h2>
