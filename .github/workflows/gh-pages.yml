@@ -21,12 +21,13 @@ jobs:
       - name: Build
         run: |
           make
-          mv rust-for-geo.html index.html
-          rm .gitignore
+          mkdir public
+          cp -r reveal.js custom.css public/
+          cp rust-for-geo.html public/index.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./public

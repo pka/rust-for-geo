@@ -2,21 +2,6 @@
 % Pirmin Kalberer @implgeo
 % FOSS4G, 1. October 2021
 
-::: notes
-
-Abstract: Rust is one of the emerging new programming languages which is well suited for geospatial applications and escpially libraries. It was originally developed by Mozilla as a long-term replacement for C++. It's a modern language with great tooling and Stack Overflow's most loved language for four years in a row. This talk gives an introduction into Rust and an overview of the current state of geospatial libraries and applications.
-
-Description: FOSS4G has always been a conference, where geospatial develeopers meet for discussions. So in a year without the possibility of having a beer, a talk dedicated to developers could be a motivation for attending anyway.
-
-More:
-- for iteration
-- Borrow checker
-What's missing:
-- Garbage collection
-- throw/catch, try/except
-- Data inheritance
-:::
-
 # About me
 
 ## Language history
@@ -53,7 +38,7 @@ What's missing:
 
 # Rust
 
-## Features
+## Why Rust?
 
 ::: incremental
 * Performance
@@ -72,7 +57,6 @@ What's missing:
 Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.
 
 Rust’s rich type system and ownership model guarantee memory-safety and thread-safety — enabling you to eliminate many classes of bugs at compile-time.
-Productivity
 
 Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling — an integrated package manager and build tool, smart multi-editor support with auto-completion and type inspections, an auto-formatter, and more.
 
@@ -127,14 +111,13 @@ println!("The value of x is: {}", x);
 * i8, i16, i32, i64
 * f32, f64
 * usize, isize
+* bool
+* Characters, Tuples, Arrays
 
-<!--
-## Primitive Types:
-
-- Tuples: (i32, u64)
-- Unit type: ()
-- Booleans: bool
- -->
+::: notes
+- primary scalar types: integers, floating-point numbers, Booleans, and characters
+- primitive compound types: tuples and arrays
+:::
 
 ## Functions
 
@@ -176,6 +159,10 @@ for number in 1..4 {
     println!("{}!", number);
 }
 ```
+
+::: notes
+example uses value range, could also be an iterator,...
+:::
 
 ## Structs
 
@@ -231,7 +218,7 @@ let image_type = ImageType::Png;
 ```Rust
 enum Color {
     Rgb(u8, u8, u8),
-    None,
+    Transparent,
 }
 ```
 . . .
@@ -245,7 +232,7 @@ let color = Color::Rgb(255, 0, 0);
 ```Rust
 match color {
     Color::Rgb(r, g, b) => println!("{}/{}/{}", r, g, b),
-    Color::None => println!("No Color"),
+    Color::Transparent => println!("No Color"),
 }
 ```
 
@@ -312,24 +299,12 @@ for i in (1..10).filter(|&x| x % 2 == 0) {
     println!("{}", i);
 }
 ```
-<!--
-```Rust
-let filtered = shapes
-    .iter()
-    .filter(|r| r.area() > 100);
-```
 
-## Multi-threading
+::: notes
+Functional Language Features: Iterators and Closures
+Closures: Anonymous Functions that Can Capture Their Environment
+:::
 
-```Rust
-thread::spawn(|| {
-    for i in 1..10 {
-        println!("hi number {} from the spawned thread!", i);
-        thread::sleep(Duration::from_millis(1));
-    }
-});
-```
- -->
 ## More
 
 * Modules
@@ -389,9 +364,8 @@ struct Rectangle {
 ## Geospatial primitives and algorithms
 
 * [Geo](https://github.com/georust/geo) - Geospatial primitives such as Point & LineString, and algorithms such as distance, convex hull, centroidcalculations.
-* [Robust](https://github.com/georust/robust) - Robust primitives for computational geometry.
 * [spade](https://github.com/Stoeoef/spade) - Spatial datastructures like r-trees and delaunay triangulations for Rust.
-* [geographiclib-rs](https://github.com/georust/geographiclib-rs) - A port of geographiclib in Rust.
+* [geographiclib-rs](https://github.com/georust/geographiclib-rs) - A port of geographiclib (geodesic calculations).
 
 ## Geospatial primitives and algorithms (bindings)
 

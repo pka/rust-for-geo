@@ -4,6 +4,11 @@ fn area(width: u32, height: u32) -> u32 {
 
 #[allow(unused_variables, dead_code)]
 fn main() {
+    let mut x = 5;
+    println!("The value of x is: {}", x);
+    x = 6;
+    println!("The value of x is: {}", x);
+
     println!("area={}", area(4, 3));
 
     let number = 3;
@@ -53,14 +58,14 @@ fn main() {
 
     enum Color {
         Rgb(u8, u8, u8),
-        None,
+        Transparent,
     }
 
     let color = Color::Rgb(255, 0, 0);
 
     match color {
         Color::Rgb(r, g, b) => println!("{}/{}/{}", r, g, b),
-        Color::None => println!("No Color"),
+        Color::Transparent => println!("No Color"),
     }
 
     let color = Color::Rgb(255, 0, 0);
